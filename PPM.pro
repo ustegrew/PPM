@@ -21,3 +21,6 @@ HEADERS  += twndmain.h \
 
 FORMS    += twndmain.ui \
     tdlgtoolsjackd.ui
+
+OTHER_FILES += \
+    README.md
