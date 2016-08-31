@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        twndmain.cpp
+        twndmain.cpp \
+    tdlgtoolsjackd.cpp
 
-HEADERS  += twndmain.h
+HEADERS  += twndmain.h \
+    tdlgtoolsjackd.h
 
-FORMS    += twndmain.ui
+FORMS    += twndmain.ui \
+    tdlgtoolsjackd.ui
