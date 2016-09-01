@@ -12,15 +12,8 @@ TARGET = PPM
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        twndmain.cpp \
-    tdlgtoolsjackd.cpp
-
-HEADERS  += twndmain.h \
-    tdlgtoolsjackd.h
-
-FORMS    += twndmain.ui \
-    tdlgtoolsjackd.ui
+SOURCES += main.cpp
 
 OTHER_FILES += \
-    README.md
+    README.md \
+    gui/include.pri
