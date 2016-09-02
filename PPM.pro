@@ -8,12 +8,33 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = PPM
+TARGET   = PPM
 TEMPLATE = app
 
+LIBS    += -ljack
 
-SOURCES += main.cpp
+#-------------------------------------------------
+# Root folder
+#-------------------------------------------------
+SOURCES         += main.cpp
 
-OTHER_FILES += \
-    README.md \
-    gui/include.pri
+OTHER_FILES     += README.md
+
+#-------------------------------------------------
+# Module: Gui
+#-------------------------------------------------
+SOURCES +=  gui/twndmain.cpp \
+            gui/tdlgtoolsjackd.cpp
+
+HEADERS  += gui/twndmain.h \
+            gui/tdlgtoolsjackd.h \
+
+FORMS    += gui/twndmain.ui \
+            gui/tdlgtoolsjackd.ui
+
+#-------------------------------------------------
+# Module: JackD
+#-------------------------------------------------
+SOURCES +=  jackd/tjackdadapter.cpp
+
+HEADERS  += jackd/tjackdadapter.h

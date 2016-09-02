@@ -1,4 +1,4 @@
-#include "twndmain.h"
+#include "gui/twndmain.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
