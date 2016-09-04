@@ -29,10 +29,14 @@ LIBS    += -ljack
 #-------------------------------------------------
 # Root folder
 #-------------------------------------------------
-SOURCES         += main.cpp
+SOURCES         += main.cpp \
+    stream/endpoint/vendpoint.cpp \
+    stream/endpoint/websocket/tendpoint_websocket.cpp \
+    stream/endpoint/directio/tendpoint_directio.cpp \
+    stream/endpoint/iostream/tendpoint_iostream.cpp
 
 OTHER_FILES     += README.md \
-    license.txt
+                   license.txt
 
 #-------------------------------------------------
 # Module: Gui
@@ -40,8 +44,12 @@ OTHER_FILES     += README.md \
 SOURCES +=  gui/twndmain.cpp \
             gui/tdlgtoolsjackd.cpp
 
-HEADERS  += gui/twndmain.h \
+HEADERS +=  gui/twndmain.h \
             gui/tdlgtoolsjackd.h \
+    stream/endpoint/vendpoint.h \
+    stream/endpoint/websocket/tendpoint_websocket.h \
+    stream/endpoint/directio/tendpoint_directio.h \
+    stream/endpoint/iostream/tendpoint_iostream.h
 
 FORMS    += gui/twndmain.ui \
             gui/tdlgtoolsjackd.ui
@@ -50,5 +58,23 @@ FORMS    += gui/twndmain.ui \
 # Module: JackD
 #-------------------------------------------------
 SOURCES +=  jackd/tjackdadapter.cpp
-
 HEADERS  += jackd/tjackdadapter.h
+
+#-------------------------------------------------
+# Module: Router
+#-------------------------------------------------
+SOURCES +=  router/trouter.cpp
+HEADERS  += router/trouter.h
+
+#-------------------------------------------------
+# Module: Stream
+#-------------------------------------------------
+SOURCES +=  stream/conduit/tconduit.cpp \
+            stream/plugin/vplugin.cpp \
+            stream/plugin/tplugin_peakextractor.cpp \
+            stream/plugin/tplugin_integrator.cpp
+
+HEADERS +=  stream/conduit/tconduit.h \
+            stream/plugin/vplugin.h \
+            stream/plugin/tplugin_peakextractor.h \
+            stream/plugin/tplugin_integrator.h

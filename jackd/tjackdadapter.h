@@ -19,7 +19,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <jack/jack.h>
 #include <jack/midiport.h>
+#include "../router/trouter.h"
 
+/**
+ * Adapter to the JackD server. Provides connection with a running instance of JackD including all the
+ * politics of buildup / teardown of the connection.
+ *
+ * @brief The TJackDAdapter class
+ */
 class TJackDAdapter
 {
     public:

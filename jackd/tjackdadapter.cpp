@@ -13,6 +13,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
+/* -----------------------------------------------------------------------------
+ * Headnotes
+ *
+ * [100]    We leave it at activating the client. We won't connect our input ports to
+ *          any other jack ports, but leave this to third party tools such as
+ *          jack_connect.
+ *
+ * [110]    Jack2 expects the process callback function to return 0. Otherwise we get
+ *          an "Cannot connect ports owned by inactive clients" error.
+ * -----------------------------------------------------------------------------
+ */
+
 #include "tjackdadapter.h"
 
 /**
@@ -55,12 +67,18 @@ bool TJackDAdapter::Open ()
 
 int TJackDAdapter::_CallbackProcess (jack_nframes_t nFrames, void *arg)
 {
+    sample_t*               samplesL;
+    sample_t*               samplesR;
 
+    samplesL = jack_port_get_buffer (fObjInputPortL, nFrames);
+    samplesR = jack_port_get_buffer (fObjInputPortR, nFrames);
+
+    return 0;               /* [110] */
 }
 
 void TJackDAdapter::_CallbackShutdown (void *arg)
 {
-exit (-1);
+    exit (-1);
 }
 
 void TJackDAdapter::_Close ()
@@ -144,6 +162,7 @@ bool TJackDAdapter::_Open ()
      * Notify the Jack server that everything is set up. The server
      * will start calling the registered callback function
      * ( TJackDAdapter::_Process(...) ) in a regular interval.
+     * [100]
      */
     if (ret == true)
     {
