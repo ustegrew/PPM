@@ -17,8 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TENDPOINT_WEBSOCKET_H
 #define TENDPOINT_WEBSOCKET_H
 
+#include "../vendpoint.h"
+
 /**
- * An endpoint for i/o via web socket (e.g. to send metering values to a web browser)
+ * An endpoint for i/o via web socket (e.g. to send metering values to a web browser).
  *
  * @brief The TEndpoint_DirectIO class
  */
