@@ -16,6 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "tendpoint_websocket.h"
 
-TEndpoint_WebSocket::TEndpoint_WebSocket()
+TEndpoint_WebSocket::TEndpoint_WebSocket (std::string id) : VEndpoint (id)
 {
 }

@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class TEndpoint_WebSocket : public VEndpoint
 {
     public:
-        TEndpoint_WebSocket();
+                            TEndpoint_WebSocket (std::string id);
 };
 
 #endif // TENDPOINT_WEBSOCKET_H

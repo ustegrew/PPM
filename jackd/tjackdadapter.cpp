@@ -39,11 +39,15 @@ TJackDAdapter::TJackDAdapter (const char* idClient, const char* idInPortL, const
     fIDPortL                = idInPortL;
     fIDPortR                = idInPortR;
     fStatus                 = kIsClosed;
+    fConnectorL             = new TEndpoint_DirectIO (idInPortL);
+    fConnectorR             = new TEndpoint_DirectIO (idInPortR);
 }
 
 TJackDAdapter::~TJackDAdapter ()
 {
     _Close ();
+    delete fConnectorL;
+    delete fConnectorR;
 }
 
 void TJackDAdapter::Close ()
@@ -65,13 +69,21 @@ bool TJackDAdapter::Open ()
     return ret;
 }
 
-int TJackDAdapter::_CallbackProcess (jack_nframes_t nFrames, void *arg)
+void TJackDAdapter::RegisterWith (TRouter& r)
 {
-    sample_t*               samplesL;
-    sample_t*               samplesR;
+    r.Register (fConnectorL);
+    r.Register (fConnectorR);
+}
 
-    samplesL = jack_port_get_buffer (fObjInputPortL, nFrames);
-    samplesR = jack_port_get_buffer (fObjInputPortR, nFrames);
+int TJackDAdapter::_CallbackProcess (jack_nframes_t nFrames, void* host)
+{
+    sample_t*        samplesL;
+    sample_t*        samplesR;
+    TJackDAdapter*   h;
+
+    h        = (TJackDAdapter*) host;
+    samplesL = (sample_t*) jack_port_get_buffer (h->fObjInputPortL, nFrames);
+    samplesR = (sample_t*) jack_port_get_buffer (h->fObjInputPortR, nFrames);
 
     return 0;               /* [110] */
 }
@@ -92,7 +104,6 @@ void TJackDAdapter::_Close ()
 
 bool TJackDAdapter::_Open ()
 {
-    char**  idPorts;
     int     success;
     bool    ret;
 
@@ -123,10 +134,10 @@ bool TJackDAdapter::_Open ()
      */
 
     /* Process callback. Will be called by the Jack server in a regular interval for passing data back and forth. */
-    jack_set_process_callback (fObjClient, TJackDAdapter::_CallbackProcess, 0);
+    jack_set_process_callback (fObjClient, TJackDAdapter::_CallbackProcess, this);
 
     /* Shutdown hook. Will be called by the Jack server when it shuts down or decides to stop calling the process callback. */
-    jack_on_shutdown (fObjClient, TJackDAdapter::_CallbackShutdown, 0);
+    jack_on_shutdown (fObjClient, TJackDAdapter::_CallbackShutdown, this);
 
     /*
      * Register stereo input port (i.e. two mono ports). [100]

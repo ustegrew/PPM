@@ -23,10 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @brief The TEndpoint_DirectIO class
  */
-class TEndpoint_DirectIO
+class TEndpoint_DirectIO : public VEndpoint
 {
     public:
-        TEndpoint_DirectIO();
+                        TEndpoint_DirectIO (std::string id);
 };
 
 #endif // TENDPOINT_DIRECTIO_H

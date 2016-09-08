@@ -13,20 +13,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
+#ifndef TYPES_H
+#define TYPES_H
 
-#ifndef TCONDUIT_H
-#define TCONDUIT_H
+typedef double              sample_t;
 
-/**
- * A unidirectional sample pipe. Streams data from one endpoint to another.
- *
- * @brief The TConduit class
- */
-class TConduit
-{
-    public:
-                            TConduit                ();
-                           ~TConduit                ();
-};
-
-#endif // TCONDUIT_H
+#endif // TYPES_H

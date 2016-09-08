@@ -13,9 +13,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
-
 #ifndef TPLUGIN_INTEGRATOR_H
 #define TPLUGIN_INTEGRATOR_H
+
+#include "vplugin.h"
 
 /**
  * A plugin to integrate a stream of samples so that we get a smooth rise/fall

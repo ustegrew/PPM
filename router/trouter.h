@@ -16,7 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TROUTER_H
 #define TROUTER_H
 
+#include <map>
+#include <string>
 #include <jack/jack.h>
+#include "../types.h"
+#include "../stream/endpoint/vendpoint.h"
 
 /**
  * Routes streams of data from various sources to various destinations.
@@ -26,12 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class TRouter
 {
     public:
-                                        TRouter ();
-                                       ~TRouter ();
+                                                TRouter                     ();
+                                               ~TRouter                     ();
 
-        void                            Push    ();
+        void                                    Push                        (sample_t smp);
+        void                                    Register                    (VEndpoint* ep);
 
     private:
+        std::map<std::string, VEndpoint*>       fEndpoints;
 };
 
 #endif // TROUTER_H

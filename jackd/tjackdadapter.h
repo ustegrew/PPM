@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <jack/jack.h>
 #include <jack/midiport.h>
+#include "../types.h"
+#include "../stream/endpoint/directio/tendpoint_directio.h"
 #include "../router/trouter.h"
 
 /**
@@ -44,29 +46,30 @@ class TJackDAdapter
                                             TJackDAdapter           (const char* idClient, const char* idInPortL, const char* idInPortR);
                                            ~TJackDAdapter           ();
 
-         void                               Close                   ();
-         EStatus                            GetStatus               ();
-         bool                               Open                    ();
+        void                                Close                   ();
+        EStatus                             GetStatus               ();
+        bool                                Open                    ();
+        void                                RegisterWith            (TRouter& r);
 
     private:
-         static const jack_options_t        kOptionsClient = (jack_options_t) (JackNoStartServer | JackUseExactName);
-
-         static int                         _CallbackProcess        (jack_nframes_t nFrames, void *arg);
-         static void                        _CallbackShutdown       (void* arg);
+        static const jack_options_t         kOptionsClient = (jack_options_t) (JackNoStartServer | JackUseExactName);
+        static int                         _CallbackProcess         (jack_nframes_t nFrames, void *arg);
+        static void                        _CallbackShutdown        (void* arg);
 
     private:
-         const char*                        fIDClient;
-         const char*                        fIDPortL;
-         const char*                        fIDPortR;
+        TEndpoint_DirectIO*                 fConnectorL;
+        TEndpoint_DirectIO*                 fConnectorR;
+        const char*                         fIDClient;
+        const char*                         fIDPortL;
+        const char*                         fIDPortR;
+        jack_client_t*                      fObjClient;
+        jack_port_t*                        fObjInputPortL;
+        jack_port_t*                        fObjInputPortR;
+        EStatus                             fStatus;
+        jack_status_t                       fSysStatus;
 
-         jack_client_t*                     fObjClient;
-         jack_port_t*                       fObjInputPortL;
-         jack_port_t*                       fObjInputPortR;
-         EStatus                            fStatus;
-         jack_status_t                      fSysStatus;
-
-         void                               _Close                  ();
-         bool                               _Open                   ();
+        void                               _Close                   ();
+        bool                               _Open                    ();
 };
 
 #endif // TJACKDADAPTER_H

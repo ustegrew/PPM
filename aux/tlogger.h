@@ -13,20 +13,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
+#ifndef TLOGGER_H
+#define TLOGGER_H
 
-#ifndef TCONDUIT_H
-#define TCONDUIT_H
+#include <iostream>
+#include <string>
 
-/**
- * A unidirectional sample pipe. Streams data from one endpoint to another.
- *
- * @brief The TConduit class
- */
-class TConduit
+class TLogger
 {
     public:
-                            TConduit                ();
-                           ~TConduit                ();
+        static void                     LogMsg          (const std::string msg);
+
+    private:
+        TLogger();
 };
 
-#endif // TCONDUIT_H
+#endif // TLOGGER_H

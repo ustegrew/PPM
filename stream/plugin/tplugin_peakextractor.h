@@ -13,9 +13,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
-
 #ifndef TPLUGIN_PEAKEXTRACTOR_H
 #define TPLUGIN_PEAKEXTRACTOR_H
+
+#include "vplugin.h"
 
 /**
  * Extraxcts peak samples every nth sample of an audio data stream.

@@ -17,64 +17,73 @@
 # Project created by QtCreator 2016-08-31T16:54:47
 #-------------------------------------------------
 
-QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET   = PPM
-TEMPLATE = app
+QT       += core gui
 
-LIBS    += -ljack
+TARGET           =  PPM
+TEMPLATE         =  app
+
+LIBS            +=  -ljack
 
 #-------------------------------------------------
 # Root folder
 #-------------------------------------------------
-SOURCES         += main.cpp \
-    stream/endpoint/vendpoint.cpp \
-    stream/endpoint/websocket/tendpoint_websocket.cpp \
-    stream/endpoint/directio/tendpoint_directio.cpp \
-    stream/endpoint/iostream/tendpoint_iostream.cpp
+SOURCES         +=  main.cpp
 
-OTHER_FILES     += README.md \
-                   license.txt
+OTHER_FILES     +=  README.md \
+                    license.txt
+
+#-------------------------------------------------
+# Module: Aux
+#-------------------------------------------------
+SOURCES         +=  aux/tlogger.cpp
+
+HEADERS         +=  aux/logger.h \
+                    aux/tlogger.h \
+                    types.h
 
 #-------------------------------------------------
 # Module: Gui
 #-------------------------------------------------
-SOURCES +=  gui/twndmain.cpp \
-            gui/tdlgtoolsjackd.cpp
+SOURCES         +=  gui/twndmain.cpp \
+                    gui/tdlgtoolsjackd.cpp
 
-HEADERS +=  gui/twndmain.h \
-            gui/tdlgtoolsjackd.h \
-    stream/endpoint/vendpoint.h \
-    stream/endpoint/websocket/tendpoint_websocket.h \
-    stream/endpoint/directio/tendpoint_directio.h \
-    stream/endpoint/iostream/tendpoint_iostream.h
+HEADERS         +=  gui/twndmain.h \
+                    gui/tdlgtoolsjackd.h
 
-FORMS    += gui/twndmain.ui \
-            gui/tdlgtoolsjackd.ui
+FORMS           +=  gui/twndmain.ui \
+                    gui/tdlgtoolsjackd.ui
 
 #-------------------------------------------------
 # Module: JackD
 #-------------------------------------------------
-SOURCES +=  jackd/tjackdadapter.cpp
-HEADERS  += jackd/tjackdadapter.h
+SOURCES         +=  jackd/tjackdadapter.cpp
+HEADERS         +=  jackd/tjackdadapter.h
 
 #-------------------------------------------------
 # Module: Router
 #-------------------------------------------------
-SOURCES +=  router/trouter.cpp
-HEADERS  += router/trouter.h
+SOURCES         +=  router/trouter.cpp
+HEADERS         +=  router/trouter.h
 
 #-------------------------------------------------
 # Module: Stream
 #-------------------------------------------------
-SOURCES +=  stream/conduit/tconduit.cpp \
-            stream/plugin/vplugin.cpp \
-            stream/plugin/tplugin_peakextractor.cpp \
-            stream/plugin/tplugin_integrator.cpp
+SOURCES         +=  stream/conduit/tconduit.cpp \
+                    stream/endpoint/vendpoint.cpp \
+                    stream/endpoint/websocket/tendpoint_websocket.cpp \
+                    stream/endpoint/directio/tendpoint_directio.cpp \
+                    stream/endpoint/iostream/tendpoint_iostream.cpp \
+                    stream/plugin/vplugin.cpp \
+                    stream/plugin/tplugin_peakextractor.cpp \
+                    stream/plugin/tplugin_integrator.cpp
 
-HEADERS +=  stream/conduit/tconduit.h \
-            stream/plugin/vplugin.h \
-            stream/plugin/tplugin_peakextractor.h \
-            stream/plugin/tplugin_integrator.h
+HEADERS         +=  stream/conduit/tconduit.h \
+                    stream/endpoint/vendpoint.h \
+                    stream/endpoint/websocket/tendpoint_websocket.h \
+                    stream/endpoint/directio/tendpoint_directio.h \
+                    stream/endpoint/iostream/tendpoint_iostream.h \
+                    stream/plugin/vplugin.h \
+                    stream/plugin/tplugin_peakextractor.h \
+                    stream/plugin/tplugin_integrator.h

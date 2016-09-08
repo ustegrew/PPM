@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class TEndpoint_IOStream : public VEndpoint
 {
     public:
-        TEndpoint_IOStream();
+                            TEndpoint_IOStream (std::string id);
 };
 
 #endif // TENDPOINT_IOSTREAM_H

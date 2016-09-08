@@ -16,6 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "tendpoint_directio.h"
 
-TEndpoint_DirectIO::TEndpoint_DirectIO()
+TEndpoint_DirectIO::TEndpoint_DirectIO (std::string id) : VEndpoint (id)
 {
 }

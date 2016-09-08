@@ -13,24 +13,29 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------- */
 
+#include "types.h"
 #include "gui/twndmain.h"
 #include "jackd/tjackdadapter.h"
+#include "router/trouter.h"
 #include <QApplication>
 #include <QMessageBox>
 
 /* Please note that JackD must be running before starting this application */
 int main(int argc, char *argv[])
 {
+    /* Create objects on the stack, system should call dTors when main() gets out of scope. */
     QApplication        a(argc, argv);
     TWndMain            w;
     QMessageBox         msgBox;
-
-    /* Create adapter on the stack, system should call dTor when main() gets out of scope. */
-    TJackDAdapter       audioSys("ppm", "l", "r");
+    TJackDAdapter       audioSys    ("ppm", "l", "r");
+    TRouter             router;
     bool                success;
 
-    /* Let's see whether we get a connection to JackD. */
-    success = audioSys.Open();
+    audioSys.RegisterWith (router);
+
+    /* Connect to JackD. */
+    success = audioSys.Open ();
+
     if (! success)
     {   // Crude error reporting - will refine this later.
         audioSys.Close (); // Not strictly necessary... will be done in cTor, but for good taste, included here ...

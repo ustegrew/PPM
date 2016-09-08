@@ -20,7 +20,20 @@ TRouter::TRouter()
 {
 }
 
-void TRouter::Push ()
+TRouter::~TRouter()
 {
 
+}
+
+void TRouter::Push (sample_t smp)
+{
+
+}
+
+void TRouter::Register (VEndpoint *ep)
+{
+    std::string         id;
+
+    id              = ep->GetID ();
+    fEndpoints [id] = ep;
 }

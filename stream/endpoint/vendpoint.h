@@ -16,6 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef VENDPOINT_H
 #define VENDPOINT_H
 
+#include <string>
+#include "../conduit/tconduit.h"
+
 /**
  * Base class for all end points.
  *
@@ -24,7 +27,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class VEndpoint
 {
     public:
-        VEndpoint();
+                                                VEndpoint               (std::string id);
+                                               ~VEndpoint               ();
+
+        std::string                             GetID                   ();
+
+    protected:
+        TConduit*                               fConduit;
+        std::string                             fID;
 };
 
 #endif // VENDPOINT_H
