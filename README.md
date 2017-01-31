@@ -9,3 +9,7 @@ classic BBC PPM meter.
 Includes a primitive GUI to show the metering information.
 
 Requires a running instance of [JackD](http://www.jackaudio.org).
+
+The prototype for this program is being developed in Java. Head over to the
+[repository](https://github.com/ustegrew/ppm-java). It is planned to port the 
+program from Java to C++/Qt.
